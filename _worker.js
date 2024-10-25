@@ -4085,8 +4085,8 @@ var SignJWT = class extends ProduceJWT {
 };
 
 // src/worker.js
-var userID = "89b3cbba-e6ac-485a-9481-976a0415eab9";
-var trojanPassword = `bpb-trojan`;
+var userID = "b851346d-8d2d-41f2-a0dc-754df038c248";
+var trojanPassword = `831423e2-f699-4989-b622-a31f3db9c411`;
 var proxyIPs = ["bpb.yousef.isegaro.com"];
 var defaultHttpPorts = ["80", "8080", "2052", "2082", "2086", "2095", "8880"];
 var defaultHttpsPorts = ["443", "8443", "2053", "2083", "2087", "2096"];
@@ -7078,7 +7078,7 @@ function buildXrayVLESSOutbound(tag2, address, port, host, sni, proxyIP2, isFrag
     outbound.streamSettings.security = "tls";
     outbound.streamSettings.tlsSettings = {
       allowInsecure,
-      fingerprint: "randomized",
+      fingerprint: "firefox",
       alpn: ["h2", "http/1.1"],
       serverName: sni
     };
@@ -7121,7 +7121,7 @@ function buildXrayTrojanOutbound(tag2, address, port, host, sni, proxyIP2, isFra
     outbound.streamSettings.security = "tls";
     outbound.streamSettings.tlsSettings = {
       allowInsecure,
-      fingerprint: "randomized",
+      fingerprint: "firefox",
       alpn: ["h2", "http/1.1"],
       serverName: sni
     };
@@ -8185,7 +8185,7 @@ function buildSingBoxVLESSOutbound(proxySettings, remark, address, port, host, s
       server_name: sni,
       utls: {
         enabled: true,
-        fingerprint: "randomized"
+        fingerprint: "firefox"
       }
     },
     transport: {
@@ -8225,7 +8225,7 @@ function buildSingBoxTrojanOutbound(proxySettings, remark, address, port, host, 
       server_name: sni,
       utls: {
         enabled: true,
-        fingerprint: "randomized"
+        fingerprint: "firefox"
       }
     },
     transport: {
@@ -8543,7 +8543,7 @@ async function getNormalConfigs(proxySettings, hostName, client) {
       const path = `${getRandomPath(16)}${proxyIP2 ? `/${encodeURIComponent(btoa(proxyIP2))}` : ""}${earlyData}`;
       const vlessRemark = encodeURIComponent(generateRemark(proxyIndex, port, addr, cleanIPs, "VLESS", configType));
       const trojanRemark = encodeURIComponent(generateRemark(proxyIndex, port, addr, cleanIPs, "Trojan", configType));
-      const tlsFields = defaultHttpsPorts.includes(port) ? `&security=tls&sni=${sni}&fp=randomized&alpn=${alpn}` : "&security=none";
+      const tlsFields = defaultHttpsPorts.includes(port) ? `&security=tls&sni=${sni}&fp=firefox&alpn=${alpn}` : "&security=none";
       if (vlessConfigs) {
         vlessConfs += `${atob("dmxlc3M")}://${userID}@${addr}:${port}?path=/${path}&encryption=none&host=${host}&type=ws${tlsFields}#${vlessRemark}
 `;
